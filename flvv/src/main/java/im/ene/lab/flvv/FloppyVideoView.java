@@ -732,7 +732,6 @@ public class FloppyVideoView extends TextureView implements MediaPlayerControl {
    * of this ImageView.
    *
    * @param scaleType The desired scaling mode.
-   * @attr ref android.R.styleable#ImageView_scaleType
    */
   public void setScaleType(ScaleType scaleType) {
     if (scaleType == null) {
@@ -753,7 +752,6 @@ public class FloppyVideoView extends TextureView implements MediaPlayerControl {
   /**
    * Return the current scale type in use by this ImageView.
    *
-   * @attr ref android.R.styleable#ImageView_scaleType
    * @see ScaleType
    */
   public ScaleType getScaleType() {
