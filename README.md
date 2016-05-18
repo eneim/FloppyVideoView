@@ -1,5 +1,5 @@
 FloppyVideoView
-====
+=====
 
 A VideoView which is Floppy :smile:
 
@@ -29,7 +29,7 @@ dependencies {
 ```
 
 LICENSE
-===
+=====
 
   Copyright 2016 Nam Nguyen, nam@ene.im
 
