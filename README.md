@@ -24,7 +24,7 @@ dependencies {
   // other dependencies
   
   // FloppyVideoView v1.0
-  compile 'im.ene.lab:flvv:1.0'
+  compile 'im.ene.lab:flvv:1.0.0'
 }
 ```
 
