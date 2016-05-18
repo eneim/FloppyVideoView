@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3e3639"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context="im.ene.lab.flvv.sample.MainActivity"
+    >
+
+  <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="320dp"
+      android:background="#e5e5e5"
+      >
+    <im.ene.lab.flvv.FloppyVideoView
+        android:id="@+id/video_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        app:retainRatio="true"
+        app:scaleType="fitStart"
+        />
+  </FrameLayout>
+
+  <android.support.v4.widget.Space
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      />
+  <Button
+      android:id="@+id/scale_button"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="bottom"
+      android:text="Change Scale"
+      />
+</LinearLayout>
