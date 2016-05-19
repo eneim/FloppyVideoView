@@ -33,10 +33,11 @@ dependencies {
   compile fileTree(include: ['*.jar'], dir: 'libs')
   testCompile 'junit:junit:4.12'
   compile 'com.android.support:appcompat-v7:23.4.0'
-  // compile project(':flvv')
-  compile 'im.ene.lab:flvv:1.0.0'
 
-  compile "com.github.eneim:Toro:${toro_latest_version}"
+  compile project(':flvv')
+  //compile 'im.ene.lab:flvv:1.0.0'
+
+  compile 'com.github.eneim:Toro:develop-SNAPSHOT'
 
   compile 'io.reactivex:rxandroid:1.2.0'
   // Because RxAndroid releases are few and far between, it is recommended you also
