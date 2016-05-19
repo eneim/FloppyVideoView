@@ -12,7 +12,7 @@ A lot to add here.
 Add my maven repo to you module's build.gradle repositories
 
 ```groovy
-maven() {
+maven {
   url 'https://github.com/eneim/FloppyVideoView/raw/master/maven-repo'
 }
 ```
