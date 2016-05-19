@@ -23,7 +23,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         app:retainRatio="true"
-        app:scaleType="fitStart"
+        app:scaleType="fitCenter"
         />
   </FrameLayout>
 
@@ -32,11 +32,19 @@
       android:layout_height="0dp"
       android:layout_weight="1"
       />
+
   <Button
       android:id="@+id/scale_button"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_gravity="bottom"
-      android:text="Change Scale"
+      android:text="Change ScaleType"
       />
+
+  <Button
+      android:id="@+id/change_video"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Change Video"
+      />
+
 </LinearLayout>

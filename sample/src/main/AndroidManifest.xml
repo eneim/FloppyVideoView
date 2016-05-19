@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="im.ene.lab.flvv.sample">
 
+  <uses-permission android:name="android.permission.INTERNET"/>
+
   <application
       android:allowBackup="false"
       android:icon="@mipmap/ic_launcher"
@@ -12,6 +14,16 @@
     <activity
         android:launchMode="singleTop"
         android:name=".features.showcase.ShowcaseActivity">
+      <!--<intent-filter>-->
+        <!--<action android:name="android.intent.action.MAIN"/>-->
+
+        <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+      <!--</intent-filter>-->
+    </activity>
+
+    <activity
+        android:launchMode="singleTop"
+        android:name=".features.standalone.StandalonePlayerActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 

@@ -19,6 +19,8 @@ package im.ene.lab.flvv.sample.features.showcase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +28,7 @@ import android.widget.TextView;
 import im.ene.lab.flvv.sample.R;
 import im.ene.lab.flvv.sample.model.Model;
 import im.ene.lab.flvv.sample.model.VideoModel;
+import im.ene.lab.toro.Toro;
 import java.util.List;
 
 /**
@@ -41,6 +44,9 @@ public class ShowcaseFragment extends Fragment implements ShowcaseView {
   private ShowcasePresenter presenter;
 
   private TextView textView;
+  private RecyclerView recyclerView;
+
+  private Adapter adapter;
 
   @Nullable @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -51,11 +57,32 @@ public class ShowcaseFragment extends Fragment implements ShowcaseView {
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     textView = (TextView) view.findViewById(R.id.loading);
+    recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+    recyclerView.setLayoutManager(
+        new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
     if (presenter == null) {
       presenter = new ShowcasePresenterImpl();
     }
     presenter.onViewCreated(this);
+
+    adapter = new Adapter();
+    recyclerView.setAdapter(adapter);
+  }
+
+  @Override public void onResume() {
+    super.onResume();
+    Toro.register(recyclerView);
+    recyclerView.postDelayed(new Runnable() {
+      @Override public void run() {
+        recyclerView.smoothScrollToPosition(0);
+      }
+    }, 2000);
+  }
+
+  @Override public void onPause() {
+    super.onPause();
+    Toro.unregister(recyclerView);
   }
 
   @Override public void onDestroyView() {
@@ -67,7 +94,8 @@ public class ShowcaseFragment extends Fragment implements ShowcaseView {
     super.onActivityCreated(savedInstanceState);
     presenter.loadItems(true, new ShowcasePresenter.DataCallback() {
       @Override public void onDataLoaded(List<VideoModel> items) {
-
+        adapter.addItems(items);
+        adapter.notifyDataSetChanged();
       }
     });
   }
@@ -75,6 +103,11 @@ public class ShowcaseFragment extends Fragment implements ShowcaseView {
   @Override public void showLoading(boolean isLoading) {
     if (textView != null) {
       textView.setText("LOADING:" + Boolean.toString(isLoading));
+      if (!isLoading) {
+        textView.setVisibility(View.GONE);
+      } else {
+        textView.setVisibility(View.VISIBLE);
+      }
     }
   }
 
