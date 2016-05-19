@@ -11,7 +11,7 @@ A lot to add here.
 
 ## Screen record
 
-<img src="https://github.com/eneim/FloppyVideoView/blob/develop/art/sample.gif" width="180">
+<img src="https://github.com/eneim/FloppyVideoView/blob/develop/art/sample.gif" width="288">
 
 ## Setup
 
