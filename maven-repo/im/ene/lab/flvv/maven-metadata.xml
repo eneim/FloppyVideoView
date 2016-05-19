@@ -3,10 +3,11 @@
   <groupId>im.ene.lab</groupId>
   <artifactId>flvv</artifactId>
   <versioning>
-    <release>1.0.0</release>
+    <release>1.1.0</release>
     <versions>
       <version>1.0.0</version>
+      <version>1.1.0</version>
     </versions>
-    <lastUpdated>20160518182033</lastUpdated>
+    <lastUpdated>20160519145907</lastUpdated>
   </versioning>
 </metadata>
