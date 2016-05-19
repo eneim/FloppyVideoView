@@ -38,7 +38,7 @@ publish {
   userOrg = 'eneim'
   groupId = 'im.ene.lab'
   artifactId = 'flvv'
-  version = '1.1.0'
+  version = '1.1.1'
   description = 'A VideoView which is scalable'
   website = 'https://github.com/eneim/FloppyVideoView'
   issueTracker = 'https://github.com/eneim/FloppyVideoView/issues'
