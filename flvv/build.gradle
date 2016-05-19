@@ -50,5 +50,8 @@ dependencies {
   compile 'com.android.support:appcompat-v7:23.4.0'
 }
 
+// REF: https://inthecheesefactory.com/blog/how-to-upload-library-to-jcenter-maven-central-as-dependency/en
+// > gradlew install
+// > gradlew bintrayUpload
 apply from: 'https://raw.githubusercontent.com/eneim/eneim.github.io/resources/publish/jcenter/installv1.gradle'
 apply from: 'https://raw.githubusercontent.com/eneim/eneim.github.io/resources/publish/jcenter/bintrayv1.gradle'
