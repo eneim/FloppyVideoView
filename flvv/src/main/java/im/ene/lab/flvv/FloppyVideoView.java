@@ -100,7 +100,6 @@ public class FloppyVideoView extends TextureView implements MediaPlayerControl {
 
   public FloppyVideoView(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
-    initVideoView();
     TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.FloppyVideoView);
 
     try {
@@ -112,6 +111,18 @@ public class FloppyVideoView extends TextureView implements MediaPlayerControl {
     }
 
     mMatrix = new Matrix();
+
+    // trick to correctly measure video
+    if (getMinimumHeight() == 0) {
+      setMinimumHeight(1);
+    }
+
+    // trick to correctly measure video
+    if (getMinimumWidth() == 0) {
+      setMinimumWidth(1);
+    }
+
+    initVideoView();
   }
 
   // AdjustViewBounds behavior will be in compatibility mode for older apps.
@@ -120,8 +131,12 @@ public class FloppyVideoView extends TextureView implements MediaPlayerControl {
   @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
     //Log.i("@@@@", "onMeasure(" + MeasureSpec.toString(widthMeasureSpec) + ", "
     //        + MeasureSpec.toString(heightMeasureSpec) + ")");
-    int widthSize = getDefaultSize(mVideoWidth, widthMeasureSpec);
-    int heightSize = getDefaultSize(mVideoHeight, heightMeasureSpec);
+
+    int width = getDefaultSize(mVideoWidth, widthMeasureSpec);
+    int height = getDefaultSize(mVideoHeight, heightMeasureSpec);
+
+    width = Math.max(width, getSuggestedMinimumWidth());
+    height = Math.max(height, getSuggestedMinimumHeight());
 
     if (mVideoWidth > 0 && mVideoHeight > 0) {
       int w = mVideoWidth;
@@ -144,36 +159,36 @@ public class FloppyVideoView extends TextureView implements MediaPlayerControl {
 
       if (resizeHeight || resizeWidth) {
         // Get the max possible width given our constraints
-        widthSize = resolveAdjustedSize(w, widthMeasureSpec);
+        width = resolveAdjustedSize(w, widthMeasureSpec);
         // Get the max possible height given our constraints
-        heightSize = resolveAdjustedSize(h, heightMeasureSpec);
+        height = resolveAdjustedSize(h, heightMeasureSpec);
 
         if (desiredAspect != 0.0f) {
           // See what our actual aspect ratio is
-          float actualAspect = (float) widthSize / (float) heightSize;
+          float actualAspect = (float) width / (float) height;
           if (Math.abs(actualAspect - desiredAspect) > 0.0000001) {
             boolean done = false;
             // Try adjusting width to be proportional to height
             if (resizeWidth) {
-              int newWidth = (int) (desiredAspect * heightSize);
+              int newWidth = (int) (desiredAspect * height);
               if (!resizeHeight && !mAdjustViewBoundsCompat) {
-                widthSize = resolveAdjustedSize(newWidth, widthMeasureSpec);
+                width = resolveAdjustedSize(newWidth, widthMeasureSpec);
               }
-              if (newWidth <= widthSize) {
-                widthSize = newWidth;
+              if (newWidth <= width) {
+                width = newWidth;
                 done = true;
               }
             }
 
             // Try adjusting height to be proportional to width
             if (!done && resizeHeight) {
-              int newHeight = (int) (widthSize / desiredAspect);
+              int newHeight = (int) (width / desiredAspect);
               // Allow the height to outgrow its original estimate if width is fixed.
               if (!resizeWidth && !mAdjustViewBoundsCompat) {
-                heightSize = resolveAdjustedSize(newHeight, heightMeasureSpec);
+                height = resolveAdjustedSize(newHeight, heightMeasureSpec);
               }
-              if (newHeight <= heightSize) {
-                heightSize = newHeight;
+              if (newHeight <= height) {
+                height = newHeight;
               }
             }
           }
@@ -182,13 +197,14 @@ public class FloppyVideoView extends TextureView implements MediaPlayerControl {
         w = Math.max(w, getSuggestedMinimumWidth());
         h = Math.max(h, getSuggestedMinimumHeight());
 
-        widthSize = resolveSizeAndState(w, widthMeasureSpec, 0);
-        heightSize = resolveSizeAndState(h, heightMeasureSpec, 0);
+        width = resolveSizeAndState(w, widthMeasureSpec, 0);
+        height = resolveSizeAndState(h, heightMeasureSpec, 0);
       }
     } else {
       // no size yet, just adopt the given spec sizes
     }
-    setMeasuredDimension(widthSize, heightSize);
+    setMeasuredDimension(width, height);
+
   }
 
   @Override public void onInitializeAccessibilityEvent(AccessibilityEvent event) {
@@ -206,8 +222,8 @@ public class FloppyVideoView extends TextureView implements MediaPlayerControl {
   }
 
   private void initVideoView() {
-    mAdjustViewBoundsCompat = getContext().getApplicationInfo().targetSdkVersion
-        <= Build.VERSION_CODES.JELLY_BEAN_MR1;
+    mAdjustViewBoundsCompat =
+        getContext().getApplicationInfo().targetSdkVersion <= Build.VERSION_CODES.JELLY_BEAN_MR1;
     mVideoWidth = 0;
     mVideoHeight = 0;
     setSurfaceTextureListener(mSurfaceTextureListener);
@@ -365,7 +381,7 @@ public class FloppyVideoView extends TextureView implements MediaPlayerControl {
       }
       mVideoWidth = mp.getVideoWidth();
       mVideoHeight = mp.getVideoHeight();
-
+      Log.i(TAG, "onPrepared: " + mVideoWidth + ":" + mVideoHeight);
       int seekToPosition =
           mSeekWhenPrepared;  // mSeekWhenPrepared may be changed after seekTo() call
       if (seekToPosition != 0) {
@@ -769,31 +785,27 @@ public class FloppyVideoView extends TextureView implements MediaPlayerControl {
       scaleY = maxScale / scaleY;
       mMatrix.setScale(scaleX, scaleY, getWidth() / 2, getHeight() / 2);
       hasChanged = true;
-
     } else if (ScaleType.CENTER_INSIDE == mScaleType) {
 
       float scaleX = (float) mVideoWidth / (float) getWidth();
       float scaleY = (float) mVideoHeight / (float) getHeight();
-      float minScale = Math.min(scaleX, scaleY);
-      if (minScale > 1) {
-        scaleX = scaleX / minScale;
-        scaleY = scaleY / minScale;
+      float maxScale = Math.max(scaleX, scaleY);
+      if (maxScale > 1) {
+        scaleX = scaleX / maxScale;
+        scaleY = scaleY / maxScale;
       }
       mMatrix.setScale(scaleX, scaleY, getWidth() / 2, getHeight() / 2);
       hasChanged = true;
-
     } else if (ScaleType.CENTER == mScaleType) {
 
       float sx = (float) mVideoWidth / (float) getWidth();
       float sy = (float) mVideoHeight / (float) getHeight();
       mMatrix.setScale(sx, sy, getWidth() / 2, getHeight() / 2);
       hasChanged = true;
-
     } else if (ScaleType.FIT_XY == mScaleType) {
 
       mMatrix.setScale(1, 1, 0, 0);
       hasChanged = true;
-
     } else if (ScaleType.FIT_START == mScaleType) {
 
       float scaleX = (float) getWidth() / mVideoWidth;
@@ -803,7 +815,6 @@ public class FloppyVideoView extends TextureView implements MediaPlayerControl {
       scaleY = minScale / scaleY;
       mMatrix.setScale(scaleX, scaleY, 0, 0);
       hasChanged = true;
-
     } else if (ScaleType.FIT_END == mScaleType) {
 
       float scaleX = (float) getWidth() / mVideoWidth;
@@ -813,7 +824,15 @@ public class FloppyVideoView extends TextureView implements MediaPlayerControl {
       scaleY = minScale / scaleY;
       mMatrix.setScale(scaleX, scaleY, getWidth(), getHeight());
       hasChanged = true;
+    } else if (ScaleType.FIT_CENTER == mScaleType) {
 
+      float scaleX = (float) getWidth() / (float) mVideoWidth;
+      float scaleY = (float) getHeight() / (float) mVideoHeight;
+      float minScale = Math.min(scaleX, scaleY);
+      scaleX = minScale / scaleX;
+      scaleY = minScale / scaleY;
+      mMatrix.setScale(scaleX, scaleY, getWidth() / 2, getHeight() / 2);
+      hasChanged = true;
     }
 
     if (hasChanged) {
