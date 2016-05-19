@@ -791,10 +791,10 @@ public class FloppyVideoView extends TextureView implements MediaPlayerControl {
 
       float scaleX = (float) mVideoWidth / (float) getWidth();
       float scaleY = (float) mVideoHeight / (float) getHeight();
-      float minScale = Math.min(scaleX, scaleY);
-      if (minScale > 1) {
-        scaleX = scaleX / minScale;
-        scaleY = scaleY / minScale;
+      float maxScale = Math.max(scaleX, scaleY);
+      if (maxScale > 1) {
+        scaleX = scaleX / maxScale;
+        scaleY = scaleY / maxScale;
       }
       mMatrix.setScale(scaleX, scaleY, getWidth() / 2, getHeight() / 2);
       hasChanged = true;
