@@ -1,7 +1,11 @@
 FloppyVideoView
 =====
 
+
+<img src="https://github.com/eneim/FloppyVideoView/blob/develop/art/web_hi_res_512.png" width="256">
+
 A VideoView which is Floppy :smile:. In short, a VideoView supports *ScaleType* just like ImageView.
+
 
 ## Usage
 
@@ -34,12 +38,16 @@ videoView.setOnPreparedListener(() -> {
 
 See ```sample``` for more snippets, especially a co-op sample code with [Toro](https://github.com/eneim/Toro)
 
+## Screen record
+
+<img src="https://github.com/eneim/FloppyVideoView/blob/develop/art/sample.gif" width="288">
+
 ## Setup
 
 Add my maven repo to you module's build.gradle repositories
 
 ```groovy
-maven() {
+maven {
   url 'https://github.com/eneim/FloppyVideoView/raw/master/maven-repo'
 }
 ```
