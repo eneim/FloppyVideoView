@@ -1,13 +1,42 @@
 FloppyVideoView
 =====
 
+
 <img src="https://github.com/eneim/FloppyVideoView/blob/develop/art/web_hi_res_512.png" width="256">
 
-A VideoView which is Floppy :smile:
+A VideoView which is Floppy :smile:. In short, a VideoView supports *ScaleType* just like ImageView.
 
-## Todo
 
-A lot to add here.
+## Usage
+
+Try to replace your VideoView with this xml snippet first
+
+- xml
+
+```xml
+<im.ene.lab.flvv.FloppyVideoView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/video_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        app:retainRatio="true"
+        app:scaleType="fitCenter"/>
+```
+
+- java
+
+```java
+FloppyVideoView videoView = (FloppyVideoView) findViewById(R.id.video_view);
+videoView.setOnPreparedListener(() -> {
+  // Video preparing is asynchronous, so your UI may be gone when it's done
+  if (videoView != null) {
+      videoView.start();
+  }
+});
+```
+
+See ```sample``` for more snippets, especially a co-op sample code with [Toro](https://github.com/eneim/Toro)
 
 ## Screen record
 
