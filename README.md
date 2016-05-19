@@ -48,7 +48,9 @@ See ```sample``` for more snippets, especially a co-op sample code with [Toro](h
 Add my maven repo to you module's build.gradle repositories
 
 ```groovy
-mavenCentral()
+maven {
+  url 'https://dl.bintray.com/eneim/maven/'
+}
 ```
 
 Then add ```flvv``` to that module's dependencies

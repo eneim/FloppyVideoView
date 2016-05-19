@@ -1,5 +1,9 @@
 repositories {
-  maven { url 'https://github.com/eneim/FloppyVideoView/raw/master/maven-repo' }
+  // jcenter() coming soon
+  maven {
+    url 'https://dl.bintray.com/eneim/maven/'
+  }
+
   maven { url "https://jitpack.io" }
 }
 
@@ -35,7 +39,7 @@ dependencies {
   compile 'com.android.support:appcompat-v7:23.4.0'
 
   compile project(':flvv')
-  //compile 'im.ene.lab:flvv:1.0.0'
+  // compile 'im.ene.lab:flvv:1.0.0'
 
   compile 'com.github.eneim:Toro:develop-SNAPSHOT'
 
