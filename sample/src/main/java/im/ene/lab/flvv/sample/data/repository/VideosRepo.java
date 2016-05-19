@@ -31,8 +31,8 @@ public interface VideosRepo extends Repository<VideoEntity, VideoModel> {
 
   String[] VIDEO_URIS = {
       "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4",
-      "android.resource://" + BuildConfig.APPLICATION_ID + "/" + R.raw.square,
       "android.resource://" + BuildConfig.APPLICATION_ID + "/" + R.raw.vertical_big,
+      "android.resource://" + BuildConfig.APPLICATION_ID + "/" + R.raw.square,
       "android.resource://" + BuildConfig.APPLICATION_ID + "/" + R.raw.horizontal,
       "android.resource://" + BuildConfig.APPLICATION_ID + "/" + R.raw.vertical
   };
