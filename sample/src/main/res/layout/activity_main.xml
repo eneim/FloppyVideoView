@@ -14,7 +14,7 @@
 
   <FrameLayout
       android:layout_width="match_parent"
-      android:layout_height="320dp"
+      android:layout_height="256dp"
       android:background="#e5e5e5"
       >
     <im.ene.lab.flvv.FloppyVideoView

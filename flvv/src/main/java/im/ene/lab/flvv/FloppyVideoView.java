@@ -138,7 +138,6 @@ public class FloppyVideoView extends TextureView implements MediaPlayerControl {
     width = Math.max(width, getSuggestedMinimumWidth());
     height = Math.max(height, getSuggestedMinimumHeight());
 
-    Log.d(TAG, "onMeasure: " + width + " | " + height);
     if (mVideoWidth > 0 && mVideoHeight > 0) {
       int w = mVideoWidth;
       int h = mVideoHeight;
@@ -206,7 +205,6 @@ public class FloppyVideoView extends TextureView implements MediaPlayerControl {
     }
     setMeasuredDimension(width, height);
 
-    Log.i(TAG, "onMeasure: " + mVideoWidth + ":" + mVideoHeight + " | " + width + ":" + height);
   }
 
   @Override public void onInitializeAccessibilityEvent(AccessibilityEvent event) {
