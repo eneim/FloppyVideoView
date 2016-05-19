@@ -23,8 +23,8 @@ Then add ```flvv``` to that module's dependencies
 dependencies {
   // other dependencies
   
-  // FloppyVideoView v1.0
-  compile 'im.ene.lab:flvv:1.0.0'
+  // FloppyVideoView v1.1.0
+  compile 'im.ene.lab:flvv:1.1.0'
 }
 ```
 
