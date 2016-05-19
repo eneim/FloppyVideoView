@@ -18,5 +18,7 @@
 /flvv/build
 /flvv/libs
 /.gradle
+/bintrayv1.gradle
+/installv1.gradle
 /sample/libs
 /sample/build

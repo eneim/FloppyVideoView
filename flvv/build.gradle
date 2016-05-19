@@ -1,6 +1,28 @@
 apply plugin: 'com.android.library'
 
-apply plugin: 'com.novoda.bintray-release'
+ext {
+  bintrayRepo = 'maven'
+  bintrayName = 'FloppyVideoView'
+
+  publishedGroupId = 'im.ene.lab'
+  libraryName = 'FloppyVideoView'
+  artifact = 'flvv'
+
+  libraryDescription = 'A VideoView which is Floppy'
+
+  siteUrl = 'https://github.com/eneim/FloppyVideoView'
+  gitUrl = 'https://github.com/eneim/FloppyVideoView.git'
+
+  libraryVersion = '1.1.1'
+
+  developerId = 'eneim'
+  developerName = 'Nam Nguyen'
+  developerEmail = 'nam@ene.im'
+
+  licenseName = 'The Apache Software License, Version 2.0'
+  licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+  allLicenses = ["Apache-2.0"]
+}
 
 android {
   compileSdkVersion 23
@@ -28,19 +50,5 @@ dependencies {
   compile 'com.android.support:appcompat-v7:23.4.0'
 }
 
-//noinspection GroovyAssignabilityCheck
-apply plugin: 'maven-publish'
-//noinspection GroovyAssignabilityCheck
-apply from: '../deploy.gradle'
-
-//./gradlew clean build bintrayUpload -PbintrayUser=BINTRAY_USERNAME -PbintrayKey=BINTRAY_KEY -PdryRun=false
-publish {
-  userOrg = 'eneim'
-  groupId = 'im.ene.lab'
-  artifactId = 'flvv'
-  version = '1.1.1'
-  description = 'A VideoView which is scalable'
-  website = 'https://github.com/eneim/FloppyVideoView'
-  issueTracker = 'https://github.com/eneim/FloppyVideoView/issues'
-  repository = 'https://github.com/eneim/FloppyVideoView.git'
-}
+apply from: '../installv1.gradle'
+apply from: '../bintrayv1.gradle'
