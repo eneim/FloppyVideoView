@@ -13,7 +13,7 @@ ext {
   siteUrl = 'https://github.com/eneim/FloppyVideoView'
   gitUrl = 'https://github.com/eneim/FloppyVideoView.git'
 
-  libraryVersion = '1.1.1'
+  libraryVersion = '1.0.0'
 
   developerId = 'eneim'
   developerName = 'Nam Nguyen'
@@ -50,5 +50,5 @@ dependencies {
   compile 'com.android.support:appcompat-v7:23.4.0'
 }
 
-apply from: '../installv1.gradle'
-apply from: '../bintrayv1.gradle'
+apply from: 'https://raw.githubusercontent.com/eneim/eneim.github.io/resources/publish/jcenter/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/eneim/eneim.github.io/resources/publish/jcenter/bintrayv1.gradle'
