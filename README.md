@@ -1,11 +1,17 @@
 FloppyVideoView
 =====
 
+<img src="https://github.com/eneim/FloppyVideoView/blob/develop/art/web_hi_res_512.png" width="256">
+
 A VideoView which is Floppy :smile:
 
 ## Todo
 
 A lot to add here.
+
+## Screen record
+
+<img src="https://github.com/eneim/FloppyVideoView/blob/develop/art/sample.gif" width="180">
 
 ## Setup
 
