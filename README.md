@@ -1,6 +1,7 @@
 FloppyVideoView
 =====
 
+[ ![Download](https://api.bintray.com/packages/eneim/maven/FloppyVideoView/images/download.svg) ](https://bintray.com/eneim/maven/FloppyVideoView/_latestVersion)
 
 <img src="https://github.com/eneim/FloppyVideoView/blob/develop/art/web_hi_res_512.png" width="256">
 
@@ -47,9 +48,7 @@ See ```sample``` for more snippets, especially a co-op sample code with [Toro](h
 Add my maven repo to you module's build.gradle repositories
 
 ```groovy
-maven {
-  url 'https://github.com/eneim/FloppyVideoView/raw/master/maven-repo'
-}
+mavenCentral()
 ```
 
 Then add ```flvv``` to that module's dependencies
@@ -62,6 +61,8 @@ dependencies {
   compile 'im.ene.lab:flvv:1.1.0'
 }
 ```
+
+Latest version: [ ![Download](https://api.bintray.com/packages/eneim/maven/FloppyVideoView/images/download.svg) ](https://bintray.com/eneim/maven/FloppyVideoView/_latestVersion)
 
 LICENSE
 =====
