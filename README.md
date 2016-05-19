@@ -25,7 +25,7 @@ Try to replace your VideoView with this xml snippet first
 ```java
 FloppyVideoView videoView = (FloppyVideoView) findViewById(R.id.video_view);
 videoView.setOnPreparedListener(() -> {
-  // Video preparing is asynchronous, so your UI may be gone when it's prepared
+  // Video preparing is asynchronous, so your UI may be gone when it's done
   if (videoView != null) {
       videoView.start();
   }
