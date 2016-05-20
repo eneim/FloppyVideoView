@@ -1,9 +1,4 @@
 repositories {
-  // jcenter() coming soon
-  maven {
-    url 'https://dl.bintray.com/eneim/maven/'
-  }
-
   maven { url "https://jitpack.io" }
 }
 
