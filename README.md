@@ -48,9 +48,13 @@ See ```sample``` for more snippets, especially a co-op sample code with [Toro](h
 Add my maven repo to you module's build.gradle repositories
 
 ```groovy
-maven {
-  url 'https://dl.bintray.com/eneim/maven/'
-}
+// just in 'rare' case you don't have this in your project
+jcenter()
+```
+
+```groovy
+// available on maven central too
+mavenCentral()
 ```
 
 Then add ```flvv``` to that module's dependencies
