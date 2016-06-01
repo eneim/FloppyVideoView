@@ -2,6 +2,7 @@ FloppyVideoView
 =====
 
 [ ![Download](https://api.bintray.com/packages/eneim/maven/FloppyVideoView/images/download.svg) ](https://bintray.com/eneim/maven/FloppyVideoView/_latestVersion)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/im.ene.lab/flvv/badge.svg)](https://maven-badges.herokuapp.com/maven-central/im.ene.lab/flvv)
 
 <img src="https://github.com/eneim/FloppyVideoView/blob/develop/art/web_hi_res_512.png" width="256">
 
